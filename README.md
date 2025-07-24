@@ -1,78 +1,166 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19948666&assignment_repo_type=AssignmentRepo)
-# Deployment and DevOps for MERN Applications
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+# MERN Blog Application 📝
 
-## Assignment Overview
+A full-featured blog application built using the **MERN** stack (MongoDB, Express, React, Node.js). This app allows users to register, log in, create posts, view articles, comment, and filter posts by categories.
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+---
+## 🌟 Features
 
-## Getting Started
+- 🔐 User Authentication (JWT-based)
+- 📝 Create, Read, Update, Delete (CRUD) for Blog Posts
+- 🗂️ Category filtering with dropdown
+- 💬 Commenting system
+- 📷 Image upload with preview
+- 🔍 Search functionality
+- ⚙️ Admin features (optional)
+- 📱 Responsive UI with Tailwind CSS
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+---
 
-## Files Included
+## 📸 Screenshots
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+| Login Page | Register Page | Home Page |
+| :---: | :---: | :---: |
+| ![Login Page](client/screenshots/Screenshot%20from%202025-07-09%2018-47-55.png) | ![Register Page](client/screenshots/Screenshot%20from%202025-07-09%2018-48-20.png) | ![Home Page](client/screenshots/Screenshot%20from%202025-07-09%2018-48-39.png) |
 
-## Requirements
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+---
 
-## Deployment Platforms
+## 🚀 Tech Stack
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+**Frontend:**
+- React (Vite)
+- Tailwind CSS
+- Axios
+- React Router
+- `react-hook-form` for form validation
+- `sonner` for toast notifications
+- `lucide-react` for icons
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB (Atlas)
+- Mongoose
+- Multer (for image uploads)
+- JSON Web Token (JWT)
+- `bcryptjs` for password hashing
+- `joi` for data validation
+- `express-rate-limit` for rate limiting
 
-## CI/CD Pipeline
+---
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+## 📁 Folder Structure
 
-## Submission
+```
+mern-blog/
+│
+├── client/ # React Frontend
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── context/
+│ │ ├── hooks/
+│ │ └── App.jsx
+│ └── package.json
+│
+├── server/ # Node.js Backend
+│ ├── controllers/
+│ ├── routes/
+│ ├── models/
+│ ├── middleware/
+│ └── server.js
+│
+├── .env.example
+├── README.md
+└── package.json
+```
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+---
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+## ⚙️ Setup Instructions
 
-## Resources
+### 🔧 Prerequisites
+- Node.js (v18 or higher recommended)
+- pnpm (or npm/yarn)
+- MongoDB (local instance or a cloud-based solution like MongoDB Atlas)
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+---
+
+### 🖥️ Backend Setup
+
+1.  **Navigate to the server directory:**
+    ```bash
+    cd server
+    ```
+2.  **Install dependencies:**
+    ```bash
+    pnpm install
+    ```
+3.  **Create a `.env` file in the `server/` directory and add the following environment variables. You can use `.env.example` as a template.**
+    ```env
+    PORT=5000
+    MONGODB_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret_key
+    ```
+4.  **Run the server in development mode:**
+    ```bash
+    pnpm run dev
+    ```
+    The server will be running on `http://localhost:5000`.
+
+---
+
+### 🌐 Frontend Setup
+
+1.  **Navigate to the client directory:**
+    ```bash
+    cd client
+    ```
+2.  **Install dependencies:**
+    ```bash
+    pnpm install
+    ```
+3.  **Create a `.env.local` file in the `client/` directory and add the following environment variable:**
+    ```env
+    VITE_API_URL=http://localhost:5000
+    ```
+4.  **Start the development server:**
+    ```bash
+    pnpm run dev
+    ```
+    The client will be running on `http://localhost:5173`.
+
+---
+
+## 📜 Available Scripts
+
+### Server (`server/`)
+- `pnpm start`: Starts the server in production mode.
+- `pnpm dev`: Starts the server in development mode with `nodemon` for hot-reloading.
+- `pnpm test`: Runs the test suite (if configured).
+
+### Client (`client/`)
+- `pnpm dev`: Starts the Vite development server.
+- `pnpm build`: Builds the client for production.
+- `pnpm lint`: Lints the source code using ESLint.
+- `pnpm preview`: Previews the production build locally.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1.  Fork the repository
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the `LICENSE` file for details.
+
